@@ -1,0 +1,406 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Combate Florestal</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: #f1f4f2;
+    color: #26332b;
+}
+
+header {
+    background: #174b32;
+    color: white;
+    text-align: center;
+    padding: 25px 15px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+header p {
+    color: #dce9df;
+    margin-bottom: 0;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 25px auto;
+    padding: 12px;
+}
+
+.card {
+    background: white;
+    padding: 22px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px #0001;
+}
+
+h2 {
+    color: #174b32;
+    font-size: 19px;
+    margin-top: 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 7px;
+    font-size: 14px;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccd5ce;
+    border-radius: 6px;
+    font-size: 17px;
+}
+
+input:focus {
+    outline: 2px solid #7ab38e;
+    border-color: #174b32;
+}
+
+.resultado {
+    background: #e7f3e9;
+    border-left: 5px solid #176b3b;
+    padding: 18px;
+    border-radius: 7px;
+    margin-top: 17px;
+}
+
+.resultado span {
+    font-size: 13px;
+    color: #53645a;
+}
+
+.resultado strong {
+    display: block;
+    font-size: 27px;
+    color: #174b32;
+    margin-top: 7px;
+}
+
+.resumo {
+    background: #174b32;
+    color: white;
+    padding: 25px;
+    border-radius: 9px;
+}
+
+.resumo strong {
+    display: block;
+    font-size: 38px;
+    margin-top: 10px;
+}
+
+.info {
+    background: #fff8df;
+    color: #64552b;
+    padding: 14px;
+    border-radius: 7px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+button {
+    border: none;
+    padding: 13px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.btn-print {
+    background: #245c91;
+    color: white;
+}
+
+.btn-clear {
+    background: #e5e9e6;
+    color: #333;
+}
+
+.rodape {
+    text-align: center;
+    color: #777;
+    padding: 20px;
+    font-size: 12px;
+}
+
+@media(max-width:600px) {
+    header h1 {
+        font-size: 19px;
+    }
+
+    .card {
+        padding: 15px;
+    }
+}
+
+@media print {
+    button {
+        display: none;
+    }
+
+    body {
+        background: white;
+    }
+
+    .card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+        break-inside: avoid;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>CALCULADORA DE COMBATE FORMIGA SILVICULTURA L</h1>
+    <p>Controle de Consumo de Isca | Sistemático e Localizado</p>
+</header>
+
+<div class="container">
+
+    <!-- SISTEMÁTICO -->
+    <div class="card">
+
+        <h2>1. MÉTODO SISTEMÁTICO</h2>
+
+        <div class="grid">
+
+            <div>
+                <label>Área trabalhada (ha)</label>
+                <input type="number" id="areaS"
+                value="200" min="0" step="0.01">
+            </div>
+
+            <div>
+                <label>Dose de produto (kg/ha)</label>
+                <input type="number" id="doseS"
+                value="4" min="0" step="0.01">
+            </div>
+
+        </div>
+
+        <div class="resultado">
+            <span>CONSUMO TOTAL SISTEMÁTICO</span>
+            <strong id="totalS">800,00 kg</strong>
+        </div>
+
+    </div>
+
+
+    <!-- LOCALIZADO -->
+    <div class="card">
+
+        <h2>2. MÉTODO LOCALIZADO</h2>
+
+        <div class="grid">
+
+            <div>
+                <label>Área trabalhada (ha)</label>
+                <input type="number" id="areaL"
+                value="50" min="0" step="0.01">
+            </div>
+
+            <div>
+                <label>Dose de produto (kg/ha)</label>
+                <input type="number" id="doseL"
+                value="3" min="0" step="0.01">
+            </div>
+
+        </div>
+
+        <div class="resultado">
+            <span>CONSUMO TOTAL LOCALIZADO</span>
+            <strong id="totalL">150,00 kg</strong>
+        </div>
+
+    </div>
+
+
+    <!-- RESUMO -->
+    <div class="card">
+
+        <h2>3. RESUMO GERAL DA OPERAÇÃO</h2>
+
+        <div class="grid">
+
+            <div class="resultado">
+                <span>Consumo sistemático</span>
+                <strong id="resumoS">800,00 kg</strong>
+            </div>
+
+            <div class="resultado">
+                <span>Consumo localizado</span>
+                <strong id="resumoL">150,00 kg</strong>
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="resumo">
+            TOTAL GERAL DE PRODUTO
+            <strong id="totalGeral">950,00 kg</strong>
+        </div>
+
+    </div>
+
+
+    <!-- MEMÓRIA DE CÁLCULO -->
+    <div class="card">
+
+        <h2>4. MEMÓRIA DE CÁLCULO</h2>
+
+        <p><strong>Método sistemático:</strong></p>
+        <p>Área trabalhada × dose em kg/ha = consumo total em kg.</p>
+
+        <p><strong>Método localizado:</strong></p>
+        <p>Área trabalhada × dose em kg/ha = consumo total em kg.</p>
+
+        <p><strong>Total geral:</strong></p>
+        <p>Consumo sistemático + consumo localizado.</p>
+
+        <div class="info">
+            Informe a dose em kg/ha conforme a recomendação
+            técnica e a bula do produto para cada método.
+        </div>
+
+    </div>
+
+
+    <!-- BOTÕES -->
+    <div style="text-align:center">
+
+        <button class="btn-print" onclick="window.print()">
+            Imprimir / Salvar PDF
+        </button>
+
+        <button class="btn-clear" onclick="limpar()">
+            Limpar Dados
+        </button>
+
+    </div>
+
+</div>
+
+<div class="rodape">
+    Sistema de Apoio Administrativo Florestal | Controle de Combate
+</div>
+
+
+<script>
+
+// FORMATAÇÃO
+function formatar(valor) {
+    return Number(valor).toLocaleString("pt-BR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+}
+
+// LER VALORES
+function numero(id) {
+    return Math.max(
+        0,
+        Number(document.getElementById(id).value) || 0
+    );
+}
+
+// CALCULAR
+function calcular() {
+
+    // SISTEMÁTICO
+    const areaS = numero("areaS");
+    const doseS = numero("doseS");
+
+    const totalS = areaS * doseS;
+
+
+    // LOCALIZADO
+    const areaL = numero("areaL");
+    const doseL = numero("doseL");
+
+    const totalL = areaL * doseL;
+
+
+    // SOMA DOS MÉTODOS
+    const totalGeral = totalS + totalL;
+
+
+    // RESULTADOS SISTEMÁTICOS
+    document.getElementById("totalS").textContent =
+        formatar(totalS) + " kg";
+
+    document.getElementById("resumoS").textContent =
+        formatar(totalS) + " kg";
+
+
+    // RESULTADOS LOCALIZADOS
+    document.getElementById("totalL").textContent =
+        formatar(totalL) + " kg";
+
+    document.getElementById("resumoL").textContent =
+        formatar(totalL) + " kg";
+
+
+    // TOTAL GERAL
+    document.getElementById("totalGeral").textContent =
+        formatar(totalGeral) + " kg";
+}
+
+
+// ATUALIZAÇÃO AUTOMÁTICA
+document.querySelectorAll("input").forEach(input => {
+    input.addEventListener("input", calcular);
+});
+
+
+// LIMPAR CAMPOS
+function limpar() {
+
+    if (confirm("Deseja limpar todos os dados?")) {
+
+        document.querySelectorAll("input").forEach(input => {
+            input.value = 0;
+        });
+
+        calcular();
+    }
+}
+
+
+// INICIAR SISTEMA
+calcular();
+
+</script>
+
+</body>
+</html>
+
